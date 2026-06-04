@@ -1,5 +1,4 @@
 <?php
-
 namespace Opencart\Admin\Controller\Catalog;
 /**
  * Class Product
@@ -51,18 +50,6 @@ class Product extends \Opencart\System\Engine\Controller {
 			$filter_price_to = $this->request->get['filter_price_to'];
 		} else {
 			$filter_price_to = '';
-		}
-
-		if (isset($this->request->get['filter_quantity_from'])) {
-			$filter_quantity_from = $this->request->get['filter_quantity_from'];
-		} else {
-			$filter_quantity_from = '';
-		}
-
-		if (isset($this->request->get['filter_quantity_to'])) {
-			$filter_quantity_to = $this->request->get['filter_quantity_to'];
-		} else {
-			$filter_quantity_to = '';
 		}
 
 		if (isset($this->request->get['filter_quantity_from'])) {
@@ -358,7 +345,7 @@ class Product extends \Opencart\System\Engine\Controller {
 
 			$special = '';
 
-			$product_discounts = $this->model_catalog_product->getDiscounts((int)$result['product_id']);
+			$product_discounts = $this->model_catalog_product->getDiscounts($result['product_id']);
 
 			foreach ($product_discounts as $product_discount) {
 				if (($product_discount['date_start'] == '0000-00-00' || strtotime($product_discount['date_start']) < time()) && ($product_discount['date_end'] == '0000-00-00' || strtotime($product_discount['date_end']) > time())) {
@@ -1163,7 +1150,7 @@ class Product extends \Opencart\System\Engine\Controller {
 		if ($product_id) {
 			$this->load->model('design/seo_url');
 
-			$data['product_seo_url'] = $this->model_design_seo_url->getSeoUrlsByKeyValue('product_id', $product_id);
+			$data['product_seo_url'] = $this->model_design_seo_url->getSeoUrlsByKeyValue('product_id', (string)$product_id);
 		} else {
 			$data['product_seo_url'] = [];
 		}
@@ -1548,12 +1535,19 @@ class Product extends \Opencart\System\Engine\Controller {
 
 		foreach ($results as $result) {
 			$option_data = [];
-			$subscription_plan_data = [];
 
-			if ($result['product_id']) {
-				$product_options = $this->model_catalog_product->getOptions($result['product_id']);
+			// Check if product is variant
+			if ($result['master_id']) {
+				$master_id = (int)$result['master_id'];
+			} else {
+				$master_id = (int)$result['product_id'];
+			}
 
-				foreach ($product_options as $product_option) {
+			$product_options = $this->model_catalog_product->getOptions($master_id);
+
+			foreach ($product_options as $product_option) {
+				if (!isset($result['override']['variant'][$product_option['product_option_id']])) {
+
 					$option_info = $this->model_catalog_option->getOption($product_option['option_id']);
 
 					if ($option_info) {
@@ -1584,31 +1578,33 @@ class Product extends \Opencart\System\Engine\Controller {
 						];
 					}
 				}
+			}
 
-				$product_subscriptions = $this->model_catalog_product->getSubscriptions($result['product_id']);
+			$subscription_plan_data = [];
 
-				foreach ($product_subscriptions as $product_subscription) {
-					$subscription_plan_info = $this->model_catalog_subscription_plan->getSubscriptionPlan($product_subscription['subscription_plan_id']);
+			$product_subscriptions = $this->model_catalog_product->getSubscriptions($result['product_id']);
 
-					if ($subscription_plan_info) {
-						$price = $this->currency->format($product_subscription['price'], $this->config->get('config_currency'));
-						$cycle = $subscription_plan_info['cycle'];
-						$frequency = $this->language->get('text_' . $subscription_plan_info['frequency']);
-						$duration = $subscription_plan_info['duration'];
+			foreach ($product_subscriptions as $product_subscription) {
+				$subscription_plan_info = $this->model_catalog_subscription_plan->getSubscriptionPlan($product_subscription['subscription_plan_id']);
 
-						if ($subscription_plan_info['duration']) {
-							$description = sprintf($this->language->get('text_subscription_duration'), $price, $cycle, $frequency, $duration);
-						} else {
-							$description = sprintf($this->language->get('text_subscription_cancel'), $price, $cycle, $frequency);
-						}
+				if ($subscription_plan_info) {
+					$price = $this->currency->format($product_subscription['price'], $this->config->get('config_currency'));
+					$cycle = $subscription_plan_info['cycle'];
+					$frequency = $this->language->get('text_' . $subscription_plan_info['frequency']);
+					$duration = $subscription_plan_info['duration'];
 
-						$subscription_plan_data[] = [
-							'subscription_plan_id' => $subscription_plan_info['subscription_plan_id'],
-							'customer_group_id'    => $product_subscription['customer_group_id'],
-							'name'                 => $subscription_plan_info['name'],
-							'description'          => $description
-						];
+					if ($subscription_plan_info['duration']) {
+						$description = sprintf($this->language->get('text_subscription_duration'), $price, $cycle, $frequency, $duration);
+					} else {
+						$description = sprintf($this->language->get('text_subscription_cancel'), $price, $cycle, $frequency);
 					}
+
+					$subscription_plan_data[] = [
+						'subscription_plan_id' => $subscription_plan_info['subscription_plan_id'],
+						'customer_group_id'    => $product_subscription['customer_group_id'],
+						'name'                 => $subscription_plan_info['name'],
+						'description'          => $description
+					];
 				}
 			}
 
