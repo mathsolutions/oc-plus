@@ -10,7 +10,7 @@
 {{ product.quantity }}x {{ product.name }} ({{ product.model }}) {{ product.total }}<br/>
 {% if product.option %}
 {% for option in product.option %}
-	- {{ option.name }} {{ option.value }}<br/>
+    - {{ option.name }} {{ option.value }}<br/>
 {% endfor %}
 {% endif %}
 {% endfor %}

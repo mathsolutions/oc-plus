@@ -364,24 +364,24 @@
 
       html += '      <div class="mb-3">';
       html += '        <label for="input-required-' + option_row + '" class="form-label">{{ entry_required|escape('js') }}</label>';
-      html += '	       <select name="product_option[' + option_row + '][required]" id="input-required-' + option_row + '" class="form-select">';
-      html += '	         <option value="1">{{ text_yes|escape('js') }}</option>';
-      html += '	         <option value="0">{{ text_no|escape('js') }}</option>';
-      html += '	       </select>';
+      html += '           <select name="product_option[' + option_row + '][required]" id="input-required-' + option_row + '" class="form-select">';
+      html += '             <option value="1">{{ text_yes|escape('js') }}</option>';
+      html += '             <option value="0">{{ text_no|escape('js') }}</option>';
+      html += '           </select>';
       html += '      </div>';
 
       if (item['type'] == 'text') {
         html += '  <div class="mb-3">';
         html += '     <label for="input-option-' + option_row + '" class="form-label">{{ entry_option_value|escape('js') }}</label>';
         html += '     <input type="text" name="product_option[' + option_row + '][value]" value="" placeholder="{{ entry_option_value|escape('js') }}" id="input-option-' + option_row + '" class="form-control"/>';
-        html += '	 </div>';
+        html += '     </div>';
       }
 
       if (item['type'] == 'textarea') {
         html += '  <div class="mb-3">';
         html += '    <label for="input-option-' + option_row + '" class="form-label">{{ entry_option_value|escape('js') }}</label>';
         html += '    <textarea name="product_option[' + option_row + '][value]" rows="5" placeholder="{{ entry_option_value|escape('js') }}" id="input-option-' + option_row + '" class="form-control"></textarea>';
-        html += '	 </div>';
+        html += '     </div>';
       }
 
       if (item['type'] == 'file') {
@@ -406,7 +406,7 @@
       }
 
       if (item['type'] == 'datetime') {
-        html += '	 <div class="mb-3">';
+        html += '     <div class="mb-3">';
         html += '    <label for="input-option-' + option_row + '" class="form-label">{{ entry_option_value|escape('js') }}</label>';
         html += '    <input type="datetime-local" name="product_option[' + option_row + '][value]" value="" placeholder="{{ entry_option_value|escape('js') }}" id="input-option-' + option_row + '" class="form-control"/>';
         html += '  </div>';
@@ -415,7 +415,7 @@
       if (item['type'] == 'select' || item['type'] == 'radio' || item['type'] == 'checkbox' || item['type'] == 'image') {
         html += '<div class="table-responsive">';
         html += '  <table class="table table-bordered table-hover">';
-        html += '  	 <thead>';
+        html += '       <thead>';
         html += '      <tr>';
         html += '        <td>{{ entry_option_value|escape('js') }}</td>';
         html += '        <td class="text-end">{{ entry_quantity|escape('js') }}</td>';
@@ -445,8 +445,8 @@
         html += '</select>';
       }
 
-      html += '	 </div>';
-      html += '	 <div class="col">';
+      html += '     </div>';
+      html += '     <div class="col">';
       html += '    <button type="button" class="btn btn-danger" onclick="$(\'#option-row-' + option_row + '\').remove();"><i class="fa-solid fa-minus-circle"></i></button>';
       html += '  </div>';
       html += '</fieldset>';
@@ -478,8 +478,8 @@
     html += '      </div>';
     html += '      <div class="modal-body">';
     html += '        <div class="mb-3">';
-    html += '      	   <label for="input-modal-option-value" class="form-label">{{ entry_option_value|escape('js') }}</label>';
-    html += '      	   <select name="option_value_id" id="input-modal-option-value" class="form-select">';
+    html += '             <label for="input-modal-option-value" class="form-label">{{ entry_option_value|escape('js') }}</label>';
+    html += '             <select name="option_value_id" id="input-modal-option-value" class="form-select">';
 
     option_value = $('#product-option-values-' + $(element).attr('data-option-row') + ' option');
 
@@ -491,93 +491,93 @@
       }
     }
 
-    html += '      	   </select>';
+    html += '             </select>';
     html += '          <input type="hidden" name="product_option_value_id" value="' + ($(element).attr('data-option-value-row') ? $('input[name=\'product_option[' + $(element).attr('data-option-row') + '][product_option_value][' + element.option_value_row + '][product_option_value_id]\']').val() : '') + '"/>';
     html += '        </div>';
     html += '        <div class="mb-3">';
-    html += '      	   <label for="input-modal-quantity" class="form-label">{{ entry_quantity|escape('js') }}</label>';
-    html += '      	   <input type="text" name="quantity" value="' + ($(element).attr('data-option-value-row') ? $('input[name=\'product_option[' + $(element).attr('data-option-row') + '][product_option_value][' + element.option_value_row + '][quantity]\']').val() : '1') + '" placeholder="{{ entry_quantity|escape('js') }}" id="input-modal-quantity" class="form-control"/>';
+    html += '             <label for="input-modal-quantity" class="form-label">{{ entry_quantity|escape('js') }}</label>';
+    html += '             <input type="text" name="quantity" value="' + ($(element).attr('data-option-value-row') ? $('input[name=\'product_option[' + $(element).attr('data-option-row') + '][product_option_value][' + element.option_value_row + '][quantity]\']').val() : '1') + '" placeholder="{{ entry_quantity|escape('js') }}" id="input-modal-quantity" class="form-control"/>';
     html += '        </div>';
     html += '        <div class="mb-3">';
-    html += '      	   <label for="input-modal-subtract" class="form-label">{{ entry_subtract|escape('js') }}</label>';
-    html += '      	   <select name="subtract" id="input-modal-subtract" class="form-select">';
+    html += '             <label for="input-modal-subtract" class="form-label">{{ entry_subtract|escape('js') }}</label>';
+    html += '             <select name="subtract" id="input-modal-subtract" class="form-select">';
 
     if ($(element).attr('data-option-value-row') && $('input[name=\'product_option[' + $(element).attr('data-option-row') + '][product_option_value][' + element.option_value_row + '][subtract]\']').val() == '1') {
       html += '        <option value="1" selected>{{ text_yes|escape('js') }}</option>';
-      html += '      	 <option value="0">{{ text_no|escape('js') }}</option>';
+      html += '           <option value="0">{{ text_no|escape('js') }}</option>';
     } else {
-      html += '      	 <option value="1">{{ text_yes|escape('js') }}</option>';
-      html += '      	 <option value="0" selected>{{ text_no|escape('js') }}</option>';
+      html += '           <option value="1">{{ text_yes|escape('js') }}</option>';
+      html += '           <option value="0" selected>{{ text_no|escape('js') }}</option>';
     }
 
-    html += '      	   </select>';
+    html += '             </select>';
     html += '        </div>';
     html += '        <div class="mb-3">';
-    html += '      	   <label for="input-modal-price" class="form-label">{{ entry_price|escape('js') }}</label>';
+    html += '             <label for="input-modal-price" class="form-label">{{ entry_price|escape('js') }}</label>';
     html += '          <div class="input-group">';
     html += '            <select name="price_prefix" class="form-select">';
 
     if ($(element).attr('data-option-value-row') && $('input[name=\'product_option[' + $(element).attr('data-option-row') + '][product_option_value][' + element.option_value_row + '][price_prefix]\']').val() == '+') {
-      html += '      	   <option value="+" selected>+</option>';
+      html += '             <option value="+" selected>+</option>';
     } else {
-      html += '      	   <option value="+">+</option>';
+      html += '             <option value="+">+</option>';
     }
 
     if ($(element).attr('data-option-value-row') && $('input[name=\'product_option[' + $(element).attr('data-option-row') + '][product_option_value][' + element.option_value_row + '][price_prefix]\']').val() == '-') {
-      html += '      	       <option value="-" selected>-</option>';
+      html += '                 <option value="-" selected>-</option>';
     } else {
-      html += '      	       <option value="-">-</option>';
+      html += '                 <option value="-">-</option>';
     }
 
-    html += '      	     </select>';
-    html += '      	     <input type="text" name="price" value="' + ($(element).attr('data-option-value-row') ? $('input[name=\'product_option[' + $(element).attr('data-option-row') + '][product_option_value][' + element.option_value_row + '][price]\']').val() : '0') + '" placeholder="{{ entry_price|escape('js') }}" id="input-modal-price" class="form-control"/>';
+    html += '               </select>';
+    html += '               <input type="text" name="price" value="' + ($(element).attr('data-option-value-row') ? $('input[name=\'product_option[' + $(element).attr('data-option-row') + '][product_option_value][' + element.option_value_row + '][price]\']').val() : '0') + '" placeholder="{{ entry_price|escape('js') }}" id="input-modal-price" class="form-control"/>';
     html += '          </div>';
     html += '        </div>';
     html += '        <div class="mb-3">';
-    html += '      	   <label for="input-modal-points" class="form-label">{{ entry_points|escape('js') }}</label>';
+    html += '             <label for="input-modal-points" class="form-label">{{ entry_points|escape('js') }}</label>';
     html += '          <div class="input-group">';
-    html += '      	     <select name="points_prefix" class="form-select">';
+    html += '               <select name="points_prefix" class="form-select">';
 
     if ($(element).attr('data-option-value-row') && $('input[name=\'product_option[' + $(element).attr('data-option-row') + '][product_option_value][' + element.option_value_row + '][points_prefix]\']').val() == '+') {
-      html += '      	       <option value="+" selected>+</option>';
+      html += '                 <option value="+" selected>+</option>';
     } else {
-      html += '      	       <option value="+">+</option>';
+      html += '                 <option value="+">+</option>';
     }
 
     if ($(element).attr('data-option-value-row') && $('input[name=\'product_option[' + $(element).attr('data-option-row') + '][product_option_value][' + element.option_value_row + '][points_prefix]\']').val() == '-') {
-      html += '      	       <option value="-" selected>-</option>';
+      html += '                 <option value="-" selected>-</option>';
     } else {
-      html += '      	       <option value="-">-</option>';
+      html += '                 <option value="-">-</option>';
     }
 
-    html += '      	     </select>';
-    html += '      	     <input type="text" name="points" value="' + ($(element).attr('data-option-value-row') ? $('input[name=\'product_option[' + $(element).attr('data-option-row') + '][product_option_value][' + element.option_value_row + '][points]\']').val() : '0') + '" placeholder="{{ entry_points|escape('js') }}" id="input-modal-points" class="form-control"/>';
+    html += '               </select>';
+    html += '               <input type="text" name="points" value="' + ($(element).attr('data-option-value-row') ? $('input[name=\'product_option[' + $(element).attr('data-option-row') + '][product_option_value][' + element.option_value_row + '][points]\']').val() : '0') + '" placeholder="{{ entry_points|escape('js') }}" id="input-modal-points" class="form-control"/>';
     html += '          </div>';
     html += '        </div>';
     html += '        <div class="mb-3">';
-    html += '      	   <label for="input-modal-weight" class="form-label">{{ entry_weight|escape('js') }}</label>';
+    html += '             <label for="input-modal-weight" class="form-label">{{ entry_weight|escape('js') }}</label>';
     html += '          <div class="input-group">';
-    html += '      	     <select name="weight_prefix" class="form-select">';
+    html += '               <select name="weight_prefix" class="form-select">';
 
     if ($(element).attr('data-option-value-row') && $('input[name=\'product_option[' + $(element).attr('data-option-row') + '][product_option_value][' + element.option_value_row + '][weight_prefix]\']').val() == '+') {
-      html += '      	       <option value="+" selected>+</option>';
+      html += '                 <option value="+" selected>+</option>';
     } else {
-      html += '      	       <option value="+">+</option>';
+      html += '                 <option value="+">+</option>';
     }
 
     if ($(element).attr('data-option-value-row') && $('input[name=\'product_option[' + $(element).attr('data-option-row') + '][product_option_value][' + element.option_value_row + '][weight_prefix]\']').val() == '-') {
-      html += '      	       <option value="-" selected>-</option>';
+      html += '                 <option value="-" selected>-</option>';
     } else {
-      html += '      	       <option value="-">-</option>';
+      html += '                 <option value="-">-</option>';
     }
 
-    html += '      	     </select>';
-    html += '      	     <input type="text" name="weight" value="' + ($(element).attr('data-option-value-row') ? $('input[name=\'product_option[' + $(element).attr('data-option-row') + '][product_option_value][' + element.option_value_row + '][weight]\']').val() : '0') + '" placeholder="{{ entry_weight|escape('js') }}" id="input-modal-weight" class="form-control"/>';
+    html += '               </select>';
+    html += '               <input type="text" name="weight" value="' + ($(element).attr('data-option-value-row') ? $('input[name=\'product_option[' + $(element).attr('data-option-row') + '][product_option_value][' + element.option_value_row + '][weight]\']').val() : '0') + '" placeholder="{{ entry_weight|escape('js') }}" id="input-modal-weight" class="form-control"/>';
     html += '          </div>';
     html += '        </div>';
     html += '      </div>';
     html += '      <div class="modal-footer">';
-    html += '	       <button type="button" id="button-save" data-option-row="' + $(element).attr('data-option-row') + '" data-option-value-row="' + element.option_value_row + '" class="btn btn-primary">{{ button_save|escape('js') }}</button> <button type="button" class="btn btn-light" data-bs-dismiss="modal">{{ button_cancel|escape('js') }}</button>';
+    html += '           <button type="button" id="button-save" data-option-row="' + $(element).attr('data-option-row') + '" data-option-value-row="' + element.option_value_row + '" class="btn btn-primary">{{ button_save|escape('js') }}</button> <button type="button" class="btn btn-light" data-bs-dismiss="modal">{{ button_cancel|escape('js') }}</button>';
     html += '      </div>';
     html += '    </div>';
     html += '  </div>';

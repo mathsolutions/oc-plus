@@ -293,7 +293,7 @@
       </div>
     </fieldset>
   {% endif %}
-  <fieldset id="shipping-address" style="display: {% if not config_checkout_payment_address or ( config_checkout_payment_address and not address_match ) %}block{% else %}none{% endif %};">
+  <fieldset id="shipping-address" style="display: {% if not config_checkout_payment_address or (config_checkout_payment_address and not address_match) %}block{% else %}none{% endif %};">
     <legend>{{ text_shipping_address }}</legend>
     <div class="row row-cols-1 row-cols-md-2">
       {% if config_checkout_payment_address %}

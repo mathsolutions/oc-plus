@@ -19,12 +19,12 @@
     </thead>
     <tbody>
       <tr>
-        <td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: left; padding: 7px;"><b>{{ text_orders_id }}</b> <a href="{{ order }}">#{{ order_id }}</a>
+        <td style="font-size: 12px;    border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: left; padding: 7px;"><b>{{ text_orders_id }}</b> <a href="{{ order }}">#{{ order_id }}</a>
           <br/>
           <b>{{ text_date_added }}</b> {{ date_added }}
           <br/>
           <b>{{ text_payment_method }}</b> {{ payment_method }}</td>
-        <td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: left; padding: 7px;"><b>{{ text_email }}</b> {{ email }}
+        <td style="font-size: 12px;    border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: left; padding: 7px;"><b>{{ text_email }}</b> {{ email }}
           <br/>
           <b>{{ text_telephone }}</b> {{ telephone }}
           <br/>
@@ -45,7 +45,7 @@
       </thead>
       <tbody>
         <tr>
-          <td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: left; padding: 7px;">{{ comment }}</td>
+          <td style="font-size: 12px;    border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: left; padding: 7px;">{{ comment }}</td>
         </tr>
       </tbody>
     </table>
@@ -58,7 +58,7 @@
     </thead>
     <tbody>
       <tr>
-        <td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: left; padding: 7px;">{{ payment_address }}</td>
+        <td style="font-size: 12px;    border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: left; padding: 7px;">{{ payment_address }}</td>
       </tr>
     </tbody>
   </table>
@@ -76,16 +76,16 @@
       <tr>
           <td style="font-size: 12px; border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: left; padding: 7px;">{{ name }}</td>
           <td style="font-size: 12px; border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: left; padding: 7px;">{{ model }}</td>
-          <td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: right; padding: 7px;">{{ quantity }}</td>
-          <td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: right; padding: 7px;">{{ price }}</td>
-          <td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: right; padding: 7px;">{{ total }}</td>
+          <td style="font-size: 12px;    border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: right; padding: 7px;">{{ quantity }}</td>
+          <td style="font-size: 12px;    border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: right; padding: 7px;">{{ price }}</td>
+          <td style="font-size: 12px;    border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: right; padding: 7px;">{{ total }}</td>
       </tr>
     </tbody>
     <tfoot>
       {% for total in totals %}
         <tr>
-          <td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: right; padding: 7px;" colspan="4"><b>{{ total.title }}:</b></td>
-          <td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: right; padding: 7px;">{{ total.text }}</td>
+          <td style="font-size: 12px;    border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: right; padding: 7px;" colspan="4"><b>{{ total.title }}:</b></td>
+          <td style="font-size: 12px;    border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: right; padding: 7px;">{{ total.text }}</td>
         </tr>
       {% endfor %}
     </tfoot>
