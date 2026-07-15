@@ -1,18 +1,19 @@
 # Changelog 
 
 All notable changes to this project will be documented in this file.    
-Detailed changes can see in the [repository log](https://github.com/oc-plus-plus/oc-plus-plus/commits/opencart/).
+Detailed changes can see in the [repository log](https://github.com/batumibiz/opencart-lts/commits/main/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0).
 
 ## Note regarding sources
 - Entries accompanied by a reference link indicate code borrowed or adapted from external sources.  
-- Entries without a reference link were developed exclusively within [this repository](https://github.com/oc-plus-plus/oc-plus-plus).
+- Entries without a reference link were developed exclusively within this repositor.
 
 ## Unreleased
 
 ### Added
 - [#14857](https://github.com/opencart/opencart/pull/14857) - Add manufacturer filter
+- [#15479](https://github.com/opencart/opencart/pull/15479) - Support multi-word product name search
 - Remember the last directory in the file manager.
 - Emulation of `GLOB_BRACE` for Alpine/musl environments:  
   introduced a custom `oc_glob()` helper function to emulate native glob functionality.
@@ -45,7 +46,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0).
 - Bootstrap CSS and JS libraries updated to version `5.3.8`
 - jQuery updated to version `4.0.0`
 - `scssphp/scssphp` package updated to version `2.1`
-- `twig/twig` package updated to version `3.24`
+- `twig/twig` package updated to version `3.27`
 - Monolithic `stylesheet.css` has been converted to a modular SCSS structure
 - `Opencart\System\Library::addScript()` - The list of scripts can be passed as an array
 - Reworked Autocomplete for the Admin panel:
@@ -120,6 +121,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0).
 - [#15428](https://github.com/opencart/opencart/pull/15428) - Multiple issues in checkout's register component
 - [#15436](https://github.com/opencart/opencart/pull/15436) - Keep order's status on admin update
 - [#15447](https://github.com/opencart/opencart/pull/15447) - Fix install open_basedir validation
+- [#15463](https://github.com/opencart/opencart/pull/15463) - Fix related products showing for wrong store
+- [#15467](https://github.com/opencart/opencart/pull/15467) - Fix promotions request
+- [#15473](https://github.com/opencart/opencart/pull/15473) - Fix escaping in backup
+- [#15476](https://github.com/opencart/opencart/pull/15476) - Fix admin edit order not saving language and currency
 - When unloading extensions, archives with errors were not deleted, but remained in the `/marketplace` folder.
 - The zone name was not displayed in the list
 - The password recovery link in the email was visible as plain text

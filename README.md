@@ -1,9 +1,9 @@
-# OC++
+# OC+
 
-[![GitHub License](https://img.shields.io/github/license/oc-plus-plus/oc-plus-plus?color=green)](https://github.com/oc-plus-plus/oc-plus-plus/blob/main/LICENSE)
-[![coding standards](https://github.com/oc-plus-plus/oc-plus-plus/actions/workflows/coding-standards.yml/badge.svg)](https://github.com/oc-plus-plus/oc-plus-plus/actions/workflows/coding-standards.yml)
-[![static analysis](https://github.com/oc-plus-plus/oc-plus-plus/actions/workflows/static-analysis.yml/badge.svg)](https://github.com/oc-plus-plus/oc-plus-plus/actions/workflows/static-analysis.yml)
-[![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/oc-plus-plus/oc-plus-plus)](https://github.com/oc-plus-plus/oc-plus-plus/issues)
+[![GitHub License](https://img.shields.io/github/license/oc-plus/oc-plus?color=green)](https://github.com/oc-plus/oc-plus/blob/main/LICENSE)
+[![php cs](https://github.com/oc-plus/oc-plus/actions/workflows/php-cs.yml/badge.svg)](https://github.com/oc-plus/oc-plus/actions/workflows/php-cs.yml)
+[![twig cs](https://github.com/oc-plus/oc-plus/actions/workflows/twig-cs.yml/badge.svg)](https://github.com/oc-plus/oc-plus/actions/workflows/twig-cs.yml)
+[![static analysis](https://github.com/oc-plus/oc-plus/actions/workflows/static-analysis.yml/badge.svg)](https://github.com/oc-plus/oc-plus/actions/workflows/static-analysis.yml)
 
 
 ## Contents
@@ -31,30 +31,24 @@ The [CHANGELOG] file contains a comprehensive list of all modifications, includi
 
 ### Why this repository exists
 To provide a stable, production-ready environment by backporting essential fixes while strictly avoiding the breaking changes found in the official development branches.
-
-### Why the "++" in the name?
-The OC++ designation signifies that this repository is a "plus-plus" edition of the original OpenCart 4.1.0.3 release:
-- The first + represents fixes for bugs and issues identified after the official 4.1.0.3 release.
-- The second + stands for additional enhancements and optimizations that strictly maintain full backward compatibility.
-
 This ensures a robust, production-ready core that remains a drop-in replacement for any 4.1.0.3-compatible environment.
 
 ## Compatibility Guarantee
 This project are strictly developed to maintain **full backward compatibility with [OpenCart 4.1.0.3]**.
 All included fixes and improvements have been extensively tested on live production sites.
 They are fully compatible with major frameworks and heavy-duty extensions,
-including **[Journal 3.2.9](https://themeforest.net/item/journal-advanced-opencart-theme/4260361)**
+including **[Journal 3.2.10](https://themeforest.net/item/journal-advanced-opencart-theme/4260361)**
 and **[MazaEngine 1.13.10](https://themeforest.net/item/poco-advanced-opencart-theme/29855890)** (Poco Theme).  
 
-**If your extension worked on clean OpenCart 4.1.0.3, it should work on OC++.** However, since several libraries (including jQuery) have been updated, some legacy extensions might require updates or replacements.
+**If your extension worked on clean OpenCart 4.1.0.3, it should work on OC+.** However, since several libraries (including jQuery) have been updated, some legacy extensions might require updates or replacements.
 
 Most importantly, the `error.log` on these production environments has remained clean for a long period, confirming the stability and reliability of this build.
 
 
 ### Production Example
 For a real-world example in action, you can visit small multilanguage website: https://isoap.ge
-- Core: **OC++** from this repository.
-- Framework: Running flawlessly on Journal v.3.2.9.
+- Core: **OC+** from this repository.
+- Framework: Running flawlessly on Journal v.3.2.10.
 - Stability: Zero errors in the logs.
 
 
@@ -62,7 +56,7 @@ For a real-world example in action, you can visit small multilanguage website: h
 - **Web Server**: Apache 2.x.x.  
   While operation on Nginx + PHP-FPM is theoretically possible, it has not been tested yet.
 - **Database Server**: Current versions of MariaDB or MySQL.  
-   OC++ has not been tested with other database systems, and compatibility is not guaranteed.
+  OC+ has not been tested with other database systems, and compatibility is not guaranteed.
 - **PHP**: 8.1 – 8.5 _(PHP 8.4 is recommended)_.
 - **PHP Settings**:
   - `max_execution_time` = 150 
@@ -90,7 +84,7 @@ For a real-world example in action, you can visit small multilanguage website: h
 >
 > ### ATTENTION! Please read carefully before proceeding with the upgrade!
 
-1. **Version Compatibility**: This upgrade package is designed **strictly for OpenCart 4.1.0.3** or **OC++**.
+1. **Version Compatibility**: This upgrade package is designed **strictly for OpenCart 4.1.0.3**.
 2. **Unsupported Versions**: upgrade package is incompatible with any other versions of OpenCart, including the official `master` branch or any other `4.x.x.x` releases.
 3. **Pre-requisite**: If you are running an older version of OpenCart, you must first upgrade to version 4.1.0.3 before applying this upgrade package.
 4. **Extension Compatibility**: this upgrade package has been tested with various extensions, including major frameworks like
@@ -124,7 +118,7 @@ For a real-world example in action, you can visit small multilanguage website: h
 
 
 ## Uninstallation: How to Revert to OpenCart 4.1.0.3
-**OC++ does not make any changes to the database structure**.  
+**OC+ does not make any changes to the database structure**.  
 Because of this, reverting back to stock OpenCart 4.1.0.3 is entirely risk-free and straightforward:
 simply replace all the files in your website's root directory with the files from the official OpenCart 4.1.0.3
 distribution, and you are good to go.
@@ -266,6 +260,10 @@ You can run the full suite or individual checks using the following commands:
     ```bash
     composer cs-check
     ```
+- **Coding Standards Check with DIFF display**:
+    ```bash
+    composer cs-check-diff
+    ```
 - **Coding Standards Fix** (Automatically fixes formatting issues):
     ```bash
     composer cs-fix
@@ -287,5 +285,5 @@ Modifications without a specific link were developed within this repository.
 
 
 [OpenCart 4.1.0.3]: https://github.com/opencart/opencart/releases/tag/4.1.0.3
-[CHANGELOG]: https://github.com/oc-plus-plus/oc-plus-plus/blob/opencart/CHANGELOG.md
-[GNU General Public License v.3]: https://github.com/oc-plus-plus/oc-plus-plus/blob/opencart/LICENSE
+[CHANGELOG]: https://github.com/oc-plus/oc-plus/blob/main/CHANGELOG.md
+[GNU General Public License v.3]: https://github.com/oc-plus/oc-plus/blob/main/LICENSE
