@@ -38,7 +38,9 @@ class File {
 					@unlink($file);
 				}
 			} else {
-				return json_decode(file_get_contents($file), true);
+				$data = json_decode((string)file_get_contents($file), true);
+
+				return $data !== null ? $data : [];
 			}
 		}
 
@@ -61,7 +63,9 @@ class File {
 			$expire = $this->expire;
 		}
 
-		file_put_contents(DIR_CACHE . 'cache.' . preg_replace('/[^A-Z0-9\._-]/i', '', $key) . '.' . (time() + $expire), json_encode($value));
+		$file = DIR_CACHE . 'cache.' . preg_replace('/[^A-Z0-9\._-]/i', '', $key) . '.' . (time() + $expire);
+
+		file_put_contents($file, json_encode($value), LOCK_EX);
 	}
 
 	/**
@@ -78,6 +82,25 @@ class File {
 			foreach ($files as $file) {
 				if (!@unlink($file)) {
 					clearstatcache(false, $file);
+				}
+			}
+		}
+	}
+
+	/**
+	 * Clear
+	 *
+	 * Clear all cache
+	 *
+	 * @return void
+	 */
+	public function clear(): void {
+		$files = glob(DIR_CACHE . 'cache.*');
+
+		if ($files) {
+			foreach ($files as $file) {
+				if (is_file($file)) {
+					unlink($file);
 				}
 			}
 		}
