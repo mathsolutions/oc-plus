@@ -30,10 +30,18 @@
   "scripts": {
     "check": [
       "@cs-check",
+      "@twig-cs-check",
       "@static-analysis"
     ],
-    "cs-fix": "php .tools/php-cs-fixer-v3.phar fix --config=.tools/php-cs-fixer.php",
-    "cs-check": "php .tools/php-cs-fixer-v3.phar fix --config=.tools/php-cs-fixer.php --dry-run --diff",
+    "fix": [
+      "@cs-fix",
+      "@twig-cs-fix"
+    ],
+    "cs-fix": "php .tools/php-cs-fixer.phar fix --config=.tools/php-cs-fixer.php",
+    "cs-check": "php .tools/php-cs-fixer.phar check --config=.tools/php-cs-fixer.php",
+    "cs-check-diff": "php .tools/php-cs-fixer.phar check --config=.tools/php-cs-fixer.php --diff",
+    "twig-cs-check": "php .tools/twig-cs-fixer.phar lint --config=.tools/twig-cs-fixer.php",
+    "twig-cs-fix": "php .tools/twig-cs-fixer.phar fix --config=.tools/twig-cs-fixer.php",
     "static-analysis": "php .tools/phpstan.phar analyze -c .tools/phpstan.neon"
   }
 }
