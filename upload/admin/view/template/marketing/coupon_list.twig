@@ -1,4 +1,6 @@
 <form id="form-coupon" method="post" data-oc-toggle="ajax" data-oc-load="{{ action }}" data-oc-target="#coupon">
+  <div class="col-sm-6 text-start mb-lg-3">{{ pagination }}</div>
+  <div class="d-lg-none p-1">Scroll <i class="fa-solid fa-arrow-right-long"></i></div>
   <div class="table-responsive">
     <table class="table table-bordered table-hover">
       <thead class="table-head">
@@ -7,8 +9,8 @@
           <th><a href="{{ sort_name }}"{% if sort == 'name' %} class="{{ order|lower }}"{% endif %}>{{ column_name }}</a></th>
           <th><a href="{{ sort_code }}"{% if sort == 'code' %} class="{{ order|lower }}"{% endif %}>{{ column_code }}</a></th>
           <th class="text-end"><a href="{{ sort_discount }}"{% if sort == 'discount' %} class="{{ order|lower }}"{% endif %}>{{ column_discount }}</a></th>
-          <th class="d-none d-lg-table-cell"><a href="{{ sort_date_start }}"{% if sort == 'date_start' %} class="{{ order|lower }}"{% endif %}>{{ column_date_start }}</a></th>
-          <th class="d-none d-lg-table-cell"><a href="{{ sort_date_end }}"{% if sort == 'date_end' %} class="{{ order|lower }}"{% endif %}>{{ column_date_end }}</a></th>
+          <th><a href="{{ sort_date_start }}"{% if sort == 'date_start' %} class="{{ order|lower }}"{% endif %}>{{ column_date_start }}</a></th>
+          <th><a href="{{ sort_date_end }}"{% if sort == 'date_end' %} class="{{ order|lower }}"{% endif %}>{{ column_date_end }}</a></th>
           <th class="text-end">{{ column_action }}</th>
         </tr>
       </thead>
@@ -20,8 +22,8 @@
               <td>{{ coupon.name }}</td>
               <td>{{ coupon.code }}</td>
               <td class="text-end">{{ coupon.discount }}</td>
-              <td class="d-none d-lg-table-cell">{{ coupon.date_start }}</td>
-              <td class="d-none d-lg-table-cell">{{ coupon.date_end }}</td>
+              <td>{{ coupon.date_start }}</td>
+              <td>{{ coupon.date_end }}</td>
               <td class="text-end"><a href="{{ coupon.edit }}" data-bs-toggle="tooltip" title="{{ button_edit }}" class="btn btn-primary"><i class="fa-solid fa-pencil"></i></a></td>
             </tr>
           {% endfor %}

@@ -1,4 +1,6 @@
 <form id="form-gdpr" method="post" data-oc-toggle="ajax" data-oc-load="{{ action }}" data-oc-target="#gdpr">
+  <div class="col-sm-6 text-start mb-lg-3">{{ pagination }}</div>
+  <div class="d-lg-none p-1">Scroll <i class="fa-solid fa-arrow-right-long"></i></div>
   <div class="table-responsive">
     <table class="table table-bordered table-hover">
       <thead class="table-head">
@@ -7,7 +9,7 @@
           <th>{{ column_email }}</th>
           <th>{{ column_request }}</th>
           <th>{{ column_status }}</th>
-          <th class="d-none d-lg-table-cell">{{ column_date_added }}</th>
+          <th>{{ column_date_added }}</th>
           <th class="text-end">{{ column_action }}</th>
         </tr>
       </thead>
@@ -35,8 +37,8 @@
                 {% elseif gdpr.status == '3' %}
                   <span class="badge bg-success">{{ text_complete }}</span>
                 {% endif %}</td>
-              <td class="d-none d-lg-table-cell">{{ gdpr.date_added }}</td>
-              <td class="text-end text-nowrap"><button type="button" value="{{ gdpr.approve }}" data-bs-toggle="tooltip" title="{{ text_approve }}" class="btn btn-success"><i class="fa-solid fa-check"></i></button>
+              <td>{{ gdpr.date_added }}</td>
+              <td class="text-end"><button type="button" value="{{ gdpr.approve }}" data-bs-toggle="tooltip" title="{{ text_approve }}" class="btn btn-success"><i class="fa-solid fa-check"></i></button>
                 <button type="button" value="{{ gdpr.deny }}" data-bs-toggle="tooltip" title="{{ text_deny }}" class="btn btn-warning"><i class="fa-solid fa-circle-xmark"></i></button>
                 <button type="button" value="{{ gdpr.delete }}" data-bs-toggle="tooltip" title="{{ text_delete }}" class="btn btn-danger"><i class="fa-regular fa-trash-can"></i></button></td>
             </tr>

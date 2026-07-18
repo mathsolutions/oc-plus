@@ -1,4 +1,5 @@
 <form id="form-product" method="post" data-oc-toggle="ajax" data-oc-load="{{ action }}" data-oc-target="#product">
+  <div class="col-sm-6 text-start mb-lg-3">{{ pagination }}</div>
   <div class="d-lg-none p-1">Scroll <i class="fa-solid fa-arrow-right-long"></i></div>
   <div class="table-responsive">
     <table class="table table-bordered table-hover">
@@ -6,10 +7,10 @@
         <tr>
           <th class="text-center" style="width: 1px;"><input type="checkbox" onclick="$('input[name*=\'selected\']').prop('checked', $(this).prop('checked'));" class="form-check-input"/></th>
           <th class="text-center col-1">{{ column_image }}</th>
-          <th class="text-nowrap"><a href="{{ sort_name }}"{% if sort == 'pd.name' %} class="{{ order|lower }}"{% endif %}>{{ column_name }}</a></th>
-          <th class="text-nowrap"><a href="{{ sort_model }}"{% if sort == 'p.model' %} class="{{ order|lower }}"{% endif %}>{{ column_model }}</a></th>
-          <th class="text-end text-nowrap"><a href="{{ sort_price }}"{% if sort == 'p.price' %} class="{{ order|lower }}"{% endif %}>{{ column_price }}</a></th>
-          <th class="text-end text-nowrap"><a href="{{ sort_quantity }}"{% if sort == 'p.quantity' %} class="{{ order|lower }}"{% endif %}>{{ column_quantity }}</a></th>
+          <th><a href="{{ sort_name }}"{% if sort == 'pd.name' %} class="{{ order|lower }}"{% endif %}>{{ column_name }}</a></th>
+          <th><a href="{{ sort_model }}"{% if sort == 'p.model' %} class="{{ order|lower }}"{% endif %}>{{ column_model }}</a></th>
+          <th class="text-end"><a href="{{ sort_price }}"{% if sort == 'p.price' %} class="{{ order|lower }}"{% endif %}>{{ column_price }}</a></th>
+          <th class="text-end"><a href="{{ sort_quantity }}"{% if sort == 'p.quantity' %} class="{{ order|lower }}"{% endif %}>{{ column_quantity }}</a></th>
           <th class="text-end">{{ column_action }}</th>
         </tr>
       </thead>

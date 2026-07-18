@@ -1,4 +1,6 @@
 <form id="form-customer-approval" method="post" data-oc-toggle="ajax" data-oc-load="{{ action }}" data-oc-target="#customer-approval">
+  <div class="col-sm-6 text-start mb-lg-3">{{ pagination }}</div>
+  <div class="d-lg-none p-1">Scroll <i class="fa-solid fa-arrow-right-long"></i></div>
   <div class="table-responsive">
     <table class="table table-bordered table-hover">
       <thead class="table-head">
@@ -22,7 +24,7 @@
               <td>{{ customer_approval.customer_group }}</td>
               <td>{{ customer_approval.type }}</td>
               <td>{{ customer_approval.date_added }}</td>
-              <td class="text-end text-nowrap"><button type="button" value="{{ customer_approval.approve }}" data-bs-toggle="tooltip" title="{{ button_approve }}" class="btn btn-success"><i class="fa-solid fa-thumbs-up"></i></button>
+              <td class="text-end"><button type="button" value="{{ customer_approval.approve }}" data-bs-toggle="tooltip" title="{{ button_approve }}" class="btn btn-success"><i class="fa-solid fa-thumbs-up"></i></button>
                 <button type="button" value="{{ customer_approval.deny }}" data-bs-toggle="tooltip" title="{{ button_deny }}" class="btn btn-danger"><i class="fa-solid fa-thumbs-down"></i></button></td>
             </tr>
           {% endfor %}
