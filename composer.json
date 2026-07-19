@@ -1,12 +1,13 @@
 {
-  "name": "batumibiz/opencart-lts",
-  "description": "OpenCart 4 LTS",
+  "name": "oc-plus/oc-plus",
+  "description": "OC+ | Collection of fixes and improvements for OpenCart 4.1.0.3",
   "type": "project",
   "keywords": [
+    "oc+",
+    "oc-plus",
     "opencart",
     "ecommerce",
-    "framework",
-    "opensource"
+    "framework"
   ],
   "license": "GPL-3.0-or-later",
   "config": {

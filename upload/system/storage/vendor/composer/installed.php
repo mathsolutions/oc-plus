@@ -1,24 +1,15 @@
 <?php return array(
     'root' => array(
-        'name' => 'batumibiz/opencart-lts',
+        'name' => 'oc-plus/oc-plus',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '6f2c33fc75aa989774da008e8a5b172dbc65c578',
+        'reference' => '323eacb8f3fb3edd56c4aca04cae4647ac348d5a',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../../../../',
         'aliases' => array(),
         'dev' => true,
     ),
     'versions' => array(
-        'batumibiz/opencart-lts' => array(
-            'pretty_version' => 'dev-main',
-            'version' => 'dev-main',
-            'reference' => '6f2c33fc75aa989774da008e8a5b172dbc65c578',
-            'type' => 'project',
-            'install_path' => __DIR__ . '/../../../../../',
-            'aliases' => array(),
-            'dev_requirement' => false,
-        ),
         'league/uri' => array(
             'pretty_version' => '7.8.1',
             'version' => '7.8.1.0',
@@ -34,6 +25,15 @@
             'reference' => '85d5c77c5d6d3af6c54db4a78246364908f3c928',
             'type' => 'library',
             'install_path' => __DIR__ . '/../league/uri-interfaces',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'oc-plus/oc-plus' => array(
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => '323eacb8f3fb3edd56c4aca04cae4647ac348d5a',
+            'type' => 'project',
+            'install_path' => __DIR__ . '/../../../../../',
             'aliases' => array(),
             'dev_requirement' => false,
         ),
