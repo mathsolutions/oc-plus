@@ -126,6 +126,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0).
 - `admin` SQL error on `admin/sale/returns` filter.
 - `admin` Fixed `Design -> Layouts` form.
 - `admin` Fixed reports HTML markup errors.
+- `admin` Fixed filemanager pagination count.
 - `catalog` [#14744](https://github.com/opencart/opencart/issues/14744) - BUG in product settlement.
 - `catalog` [#14746](https://github.com/opencart/opencart/issues/14746) - Various bugs with `sku`, `upc`, `ean`, `jan`, `isbn`, `mpn`.
 - `catalog` [#14755](https://github.com/opencart/opencart/issues/14755) - Wrong total on cart page.
