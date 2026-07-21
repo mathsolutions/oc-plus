@@ -149,4 +149,27 @@ class Online extends \Opencart\System\Engine\Controller {
 
 		return $this->load->view('report/online_list', $data);
 	}
+
+	public function autocomplete(): void {
+		$json = [];
+
+		if (isset($this->request->get['filter_ip'])) {
+			$filter_data = [
+				'filter_ip' => $this->request->get['filter_ip'],
+				'limit'     => $this->config->get('config_autocomplete_limit')
+			];
+
+			$this->load->model('report/online');
+			$results = $this->model_report_online->getIp($filter_data);
+
+			foreach ($results as $result) {
+				$json[] = [
+					'ip' => $result['ip']
+				];
+			}
+		}
+
+		$this->response->addHeader('Content-Type: application/json');
+		$this->response->setOutput(json_encode($json));
+	}
 }

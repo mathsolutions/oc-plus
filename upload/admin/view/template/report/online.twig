@@ -22,12 +22,13 @@
             <form id="form-filter">
               <div class="mb-3">
                 <label class="form-label">{{ entry_customer }}</label>
-                <input type="text" name="filter_customer" value="" placeholder="{{ entry_customer }}" id="input-customer" data-oc-target="autocomplete-customer" class="form-control" autocomplete="off"/>
+                <input type="text" name="filter_customer" value="" placeholder="{{ entry_customer }}" id="input-customer" data-oc-target="autocomplete-customer" class="form-control"/>
                 <ul id="autocomplete-customer" class="dropdown-menu"></ul>
               </div>
               <div class="mb-3">
                 <label for="input-ip" class="form-label">{{ entry_ip }}</label>
-                <input type="text" name="filter_ip" value="" id="input-ip" placeholder="{{ entry_ip }}" class="form-control"/>
+                <input type="text" name="filter_ip" value="" id="input-ip" placeholder="{{ entry_ip }}" data-oc-target="autocomplete-ip" class="form-control" autocomplete="off"/>
+                <ul id="autocomplete-ip" class="dropdown-menu"></ul>
               </div>
               <div class="text-end">
                 <button type="submit" class="btn btn-light"><i class="fa-solid fa-filter"></i> {{ button_filter }}</button>
@@ -62,6 +63,16 @@
     labelKey: 'name',
     onSelect: function (item) {
       $('#input-customer').val(decodeHTMLEntities(item.label));
+    }
+  });
+
+  ocAutocomplete({
+    inputSelector: '#input-ip',
+    route: 'report/online.autocomplete',
+    userToken: '{{ user_token }}',
+    labelKey: 'ip',
+    onSelect: function (item) {
+      $('#input-ip').val(decodeHTMLEntities(item.label));
     }
   });
 

@@ -34,7 +34,7 @@ class Online extends \Opencart\System\Engine\Model {
 		$implode = [];
 
 		if (!empty($data['filter_ip'])) {
-			$implode[] = "`co`.`ip` LIKE '" . $this->db->escape((string)$data['filter_ip']) . "'";
+			$implode[] = "`co`.`ip` LIKE '" . $this->db->escape((string)$data['filter_ip']) . "%'";
 		}
 
 		if (!empty($data['filter_customer'])) {
@@ -104,5 +104,18 @@ class Online extends \Opencart\System\Engine\Model {
 		$query = $this->db->query($sql);
 
 		return (int)$query->row['total'];
+	}
+
+	public function getIp(array $data = []): array {
+		$sql = "SELECT `ip` FROM `" . DB_PREFIX . "customer_online`";
+
+		if (!empty($data['filter_ip'])) {
+			$sql .= " WHERE `ip` LIKE '" . $this->db->escape((string)$data['filter_ip']) . "%'";
+		}
+
+		$sql .= " ORDER BY `ip` ASC LIMIT " . (int)$data['limit'];
+		$query = $this->db->query($sql);
+
+		return $query->rows;
 	}
 }
