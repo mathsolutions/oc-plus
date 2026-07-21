@@ -24,7 +24,8 @@
             <form id="form-filter">
               <div class="mb-3">
                 <label class="form-label">{{ entry_name }}</label>
-                <input type="text" name="filter_name" value="{{ filter_name }}" placeholder="{{ entry_name }}" id="input-name" class="form-control"/>
+                <input type="text" name="filter_name" value="{{ filter_name }}" placeholder="{{ entry_name }}" id="input-name" data-oc-target="autocomplete-name" class="form-control" autocomplete="off"/>
+                <ul id="autocomplete-name" class="dropdown-menu"></ul>
               </div>
               <div class="mb-3">
                 <label class="form-label">{{ entry_iso_code_2 }}</label>
@@ -57,6 +58,17 @@
     listId: '#country',
     route: 'localisation/country',
     userToken: '{{ user_token }}'
+  });
+
+  ocAutocomplete({
+    inputSelector: '#input-name',
+    route: 'localisation/country.autocomplete',
+    userToken: '{{ user_token }}',
+    valueKey: 'country_id',
+    labelKey: 'name',
+    onSelect: function (item) {
+      $('#input-name').val(decodeHTMLEntities(item.label));
+    }
   });
 
   $('#country').on('click', 'thead a, .pagination a', function (e) {
