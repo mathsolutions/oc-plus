@@ -514,3 +514,168 @@ $(document).ready(function() {
         });
     });
 });
+
+/**
+ * Universal Filter Handler
+ *
+ * Usage:
+ *
+ * ocFilter(options)
+ *
+ * Required options:
+ *   formId    {string}  jQuery filter form selector      (e.g. '#form-filter')
+ *   listId    {string}  jQuery list container selector   (e.g. '#list')
+ *   route     {string}  Controller route                 (e.g. 'catalog/category')
+ *   userToken {string}  user_token for current session   (e.g. '{{ user_token }}')
+ *
+ * Example:
+ *
+ * ocFilter({
+ *   formId    : '#form-filter',
+ *   listId    : '#category',
+ *   route     : 'catalog/category',
+ *   userToken : '{{ user_token }}',
+ * });
+ */
+
+function ocFilter(options) {
+	const $form = $(options.formId);
+	const $list = $(options.listId);
+	const routePart = 'index.php?route=' + options.route;
+	const tokenPart = '&user_token=' + options.userToken;
+
+	const $submit = $form.find('button[type="submit"]');
+	const $reset = $form.find('button[type="reset"]');
+
+	$form.on('submit', function (e) {
+		e.preventDefault();
+
+		// We use only non-empty fields
+		const filterData = {};
+		let filterNotEmpty = false;
+
+		$(this).find('input[name], select[name]').each(function () {
+			const value = $(this).val();
+
+			if (value !== '' && value !== null) {
+				filterData[$(this).attr('name')] = value;
+				filterNotEmpty = true;
+			}
+		});
+
+		if (filterNotEmpty) {
+			const urlParams = $.param(filterData);
+			const query = urlParams ? '&' + urlParams : '';
+
+			window.history.pushState({}, null, routePart + query + tokenPart);
+			$list.load(routePart + '.list' + query + tokenPart);
+
+			$submit.removeClass('btn-outline-primary').addClass('btn-primary');
+			$reset.removeClass('btn-outline-secondary').addClass('btn-secondary');
+		}
+	});
+
+	$form.on('reset', function () {
+		$submit.removeClass('btn-primary').addClass('btn-outline-primary');
+		$reset.removeClass('btn-secondary').addClass('btn-outline-secondary');
+
+		window.location = routePart + tokenPart;
+	});
+}
+
+/**
+ * Universal Autocomplete Helper
+ *
+ * Usage:
+ *
+ * ocAutocomplete(options)
+ *
+ * Required options:
+ *   inputSelector  {string}   jQuery text field selector
+ *   route          {string}   Autocomplete route (e.g. 'catalog/category.autocomplete')
+ *   userToken      {string}   user_token for current session
+ *   valueKey       {string}   The "value" key in the JSON response (e.g. 'category_id')
+ *   labelKey       {string}   "label" key in JSON response (e.g. 'name')
+ *   onSelect       {function(item)}  Called when an item is selected.
+ *                              item = { value, label }
+ *
+ * Optional options:
+ *   prependNone    {boolean|string}
+ *                  false  — do not add an empty item (default)
+ *                  true   — add { value: '0', label: '' }
+ *                  string — add { value: '0', label: <this string> }
+ *
+ * Example — field with parent category (with the item "None"):
+ *
+ * ocAutocomplete({
+ *     inputSelector : '#input-parent',
+ *     route         : 'catalog/category.autocomplete',
+ *     userToken     : '{{ user_token }}',
+ *     valueKey      : 'category_id',
+ *     labelKey      : 'name',
+ *     prependNone   : '{{ text_none }}',
+ *     onSelect      : function(item) {
+ *       $('#input-parent').val(decodeHTMLEntities(item.label));
+ *       $('#input-parent-id').val(item.value);
+ *     }
+ *   });
+ *
+ * Example — filter field (without prependNone, adds a row to the table):
+ *
+ * ocAutocomplete({
+ *     inputSelector : '#input-filter',
+ *     route         : 'catalog/filter.autocomplete',
+ *     userToken     : '{{ user_token }}',
+ *     valueKey      : 'filter_id',
+ *     labelKey      : 'name',
+ *     onSelect      : function(item) {
+ *       $('#input-filter').val('');
+ *       $('#row-filter-' + item.value).remove();
+ *       var html  = '<tr id="row-filter-' + item.value + '">';
+ *           html += '  <td>' + item.label + '<input type="hidden" name="category_filter[]" value="' + item.value + '"/></td>';
+ *           html += '  <td class="text-end"><button type="button" class="btn btn-danger btn-sm"><i class="fa-solid fa-minus-circle"></i></button></td>';
+ *           html += '</tr>';
+ *       $('#category-filter tbody').append(html);
+ *     }
+ *   });
+ */
+
+function ocAutocomplete(options) {
+	const inputSelector = options.inputSelector;
+	const url = 'index.php?route=' + options.route + '&user_token=' + options.userToken;
+	const valueKey = options.valueKey;
+	const labelKey = options.labelKey;
+	const prependNone = (options.prependNone !== undefined) ? options.prependNone : false;
+	const onSelect = options.onSelect;
+
+	$(inputSelector).autocomplete({
+		'source': function (request, response) {
+			$.ajax({
+				url: url + '&filter_' + labelKey + '=' + encodeURIComponent(request),
+				dataType: 'json',
+				success: function (json) {
+					if (prependNone !== false) {
+						let noneLabel = (typeof prependNone === 'string') ? prependNone : '';
+						let noneItem = {};
+						noneItem[valueKey] = '0';
+						noneItem[labelKey] = noneLabel;
+						json.unshift(noneItem);
+					}
+
+					response($.map(json, function (item) {
+						return {
+							value: item[valueKey],
+							label: item[labelKey]
+						};
+					}));
+				}
+			});
+		},
+
+		'select': function (item) {
+			if (typeof onSelect === 'function') {
+				onSelect(item);
+			}
+		}
+	});
+}

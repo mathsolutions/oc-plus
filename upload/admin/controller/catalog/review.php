@@ -324,11 +324,6 @@ class Review extends \Opencart\System\Engine\Controller {
 		$data['sort'] = $sort;
 		$data['order'] = $order;
 
-		$this->document->addScript([
-			'view/javascript/oc/filter.min.js',
-			'view/javascript/oc/autocomplete.min.js'
-		]);
-
 		return $this->load->view('catalog/review_list', $data);
 	}
 
@@ -339,8 +334,6 @@ class Review extends \Opencart\System\Engine\Controller {
 	 */
 	public function form(): void {
 		$this->load->language('catalog/review');
-
-		$this->document->addScript('view/javascript/oc/autocomplete.min.js');
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
