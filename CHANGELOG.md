@@ -23,7 +23,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0).
 - `admin` Top pagination.
 - `admin` Autocomplete for `Countries` filters.
 - `admin` Autocomplete for `Zone` filters.
-- `admin` `IP` filter autocomplete for online report.
+- `admin` Autocomplete for `SEO URL` filters.
+- `admin` Autocomplete for online report `IP` filter.
 - `catalog` [#15479](https://github.com/opencart/opencart/pull/15479) - Support multi-word product name search.
 - `catalog` Button to change an order on the checkout page.
 

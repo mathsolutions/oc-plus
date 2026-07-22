@@ -233,15 +233,15 @@ class SeoUrl extends \Opencart\System\Engine\Model {
 		$implode = [];
 
 		if (!empty($data['filter_keyword'])) {
-			$implode[] = "LCASE(`keyword`) LIKE '" . $this->db->escape(oc_strtolower($data['filter_keyword'])) . "'";
+			$implode[] = "LCASE(`keyword`) LIKE '%" . $this->db->escape(oc_strtolower($data['filter_keyword'])) . "%'";
 		}
 
 		if (!empty($data['filter_key'])) {
-			$implode[] = "LCASE(`key`) LIKE '" . $this->db->escape(oc_strtolower($data['filter_key'])) . "'";
+			$implode[] = "LCASE(`key`) LIKE '%" . $this->db->escape(oc_strtolower($data['filter_key'])) . "%'";
 		}
 
 		if (!empty($data['filter_value'])) {
-			$implode[] = "LCASE(`value`) LIKE '" . $this->db->escape(oc_strtolower($data['filter_value'])) . "'";
+			$implode[] = "LCASE(`value`) LIKE '%" . $this->db->escape(oc_strtolower($data['filter_value'])) . "%'";
 		}
 
 		if (isset($data['filter_store_id']) && $data['filter_store_id'] !== '') {
@@ -377,15 +377,15 @@ class SeoUrl extends \Opencart\System\Engine\Model {
 		$implode = [];
 
 		if (!empty($data['filter_keyword'])) {
-			$implode[] = "LCASE(`keyword`) LIKE '" . $this->db->escape(oc_strtolower($data['filter_keyword'])) . "'";
+			$implode[] = "LCASE(`keyword`) LIKE '%" . $this->db->escape(oc_strtolower($data['filter_keyword'])) . "%'";
 		}
 
 		if (!empty($data['filter_key'])) {
-			$implode[] = "LCASE(`key`) = '" . $this->db->escape(oc_strtolower($data['filter_key'])) . "'";
+			$implode[] = "LCASE(`key`) LIKE '%" . $this->db->escape(oc_strtolower($data['filter_key'])) . "%'";
 		}
 
 		if (!empty($data['filter_value'])) {
-			$implode[] = "LCASE(`value`) LIKE '" . $this->db->escape(oc_strtolower($data['filter_value'])) . "'";
+			$implode[] = "LCASE(`value`) LIKE '%" . $this->db->escape(oc_strtolower($data['filter_value'])) . "%'";
 		}
 
 		if (!empty($data['filter_store_id']) && $data['filter_store_id'] !== '') {
@@ -403,5 +403,34 @@ class SeoUrl extends \Opencart\System\Engine\Model {
 		$query = $this->db->query($sql);
 
 		return (int)$query->row['total'];
+	}
+
+	public function autocomplete(array $data = []): array {
+		$sql = "SELECT * FROM `" . DB_PREFIX . "seo_url`";
+
+		if (isset($data['filter_keyword'])) {
+			if (!empty($data['filter_keyword'])) {
+				$sql .= " WHERE LCASE(`keyword`) LIKE '%" . $this->db->escape(oc_strtolower($data['filter_keyword'])) . "%'";
+			}
+
+			$sql .= " GROUP BY `keyword` ORDER BY `keyword`";
+		} elseif (isset($data['filter_key'])) {
+			if (!empty($data['filter_key'])) {
+				$sql .= " WHERE LCASE(`key`) LIKE '%" . $this->db->escape(oc_strtolower($data['filter_key'])) . "%'";
+			}
+
+			$sql .= " GROUP BY `key` ORDER BY `key`";
+		} elseif (isset($data['filter_value'])) {
+			if (!empty($data['filter_value'])) {
+				$sql .= " WHERE LCASE(`value`) LIKE '%" . $this->db->escape(oc_strtolower($data['filter_value'])) . "%'";
+			}
+
+			$sql .= " GROUP BY `value` ORDER BY `value`";
+		}
+
+		$sql .= " LIMIT " . (int)$data['limit'];
+		$query = $this->db->query($sql);
+
+		return $query->rows;
 	}
 }

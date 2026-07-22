@@ -23,16 +23,23 @@
           <div class="card-body">
             <form id="form-filter">
               <div class="mb-3">
-                <label for="input-keyword" class="form-label">{{ entry_keyword }}</label> <input type="text" name="filter_keyword" value="{{ filter_keyword }}" placeholder="{{ entry_keyword }}" id="input-keyword" class="form-control"/>
+                <label for="input-keyword" class="form-label">{{ entry_keyword }}</label>
+                <input type="text" name="filter_keyword" value="{{ filter_keyword }}" placeholder="{{ entry_keyword }}" id="input-keyword" data-oc-target="autocomplete-keyword" class="form-control" autocomplete="off"/>
+                <ul id="autocomplete-keyword" class="dropdown-menu"></ul>
               </div>
               <div class="mb-3">
-                <label for="input-key" class="form-label">{{ entry_key }}</label> <input type="text" name="filter_key" value="{{ filter_key }}" placeholder="{{ entry_key }}" id="input-key" class="form-control"/>
+                <label for="input-key" class="form-label">{{ entry_key }}</label>
+                <input type="text" name="filter_key" value="{{ filter_key }}" placeholder="{{ entry_key }}" id="input-key" data-oc-target="autocomplete-key" class="form-control" autocomplete="off"/>
+                <ul id="autocomplete-key" class="dropdown-menu"></ul>
               </div>
               <div class="mb-3">
-                <label for="input-value" class="form-label">{{ entry_value }}</label> <input type="text" name="filter_value" value="{{ filter_value }}" placeholder="{{ entry_value }}" id="input-value" class="form-control"/>
+                <label for="input-value" class="form-label">{{ entry_value }}</label>
+                <input type="text" name="filter_value" value="{{ filter_value }}" placeholder="{{ entry_value }}" id="input-value" data-oc-target="autocomplete-value" class="form-control" autocomplete="off"/>
+                <ul id="autocomplete-value" class="dropdown-menu"></ul>
               </div>
               <div class="mb-3">
-                <label for="input-store" class="form-label">{{ entry_store }}</label> <select name="filter_store_id" id="input-store" class="form-select">
+                <label for="input-store" class="form-label">{{ entry_store }}</label>
+                <select name="filter_store_id" id="input-store" class="form-select">
                   <option value=""></option>
                   <option value="0"{% if filter_store_id == '0' %} selected{% endif %}>{{ text_default }}</option>
                   {% for store in stores %}
@@ -41,7 +48,8 @@
                 </select>
               </div>
               <div class="mb-3">
-                <label for="input-language" class="form-label">{{ entry_language }}</label> <select name="filter_language_id" id="input-language" class="form-select">
+                <label for="input-language" class="form-label">{{ entry_language }}</label>
+                <select name="filter_language_id" id="input-language" class="form-select">
                   <option value=""></option>
                   {% for language in languages %}
                     <option value="{{ language.language_id }}"{% if language.language_id == filter_language_id %} selected{% endif %}>{{ language.name }}</option>
@@ -73,9 +81,41 @@
     userToken: '{{ user_token }}'
   });
 
+  ocAutocomplete({
+    inputSelector: '#input-keyword',
+    route: 'design/seo_url.autocomplete',
+    userToken: '{{ user_token }}',
+    valueKey: 'seo_url_id',
+    labelKey: 'keyword',
+    onSelect: function (item) {
+      $('#input-keyword').val(decodeHTMLEntities(item.label));
+    }
+  });
+
+  ocAutocomplete({
+    inputSelector: '#input-key',
+    route: 'design/seo_url.autocomplete',
+    userToken: '{{ user_token }}',
+    valueKey: 'seo_url_id',
+    labelKey: 'key',
+    onSelect: function (item) {
+      $('#input-key').val(decodeHTMLEntities(item.label));
+    }
+  });
+
+  ocAutocomplete({
+    inputSelector: '#input-value',
+    route: 'design/seo_url.autocomplete',
+    userToken: '{{ user_token }}',
+    valueKey: 'seo_url_id',
+    labelKey: 'value',
+    onSelect: function (item) {
+      $('#input-value').val(decodeHTMLEntities(item.label));
+    }
+  });
+
   $('#list').on('click', 'thead a, .pagination a', function (e) {
     e.preventDefault();
-
     $('#list').load(this.href);
   });
 </script>
