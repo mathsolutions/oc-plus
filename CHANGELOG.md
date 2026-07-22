@@ -37,7 +37,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0).
 - `system` [#15513](https://github.com/opencart/opencart/pull/15513) - Change product rating field type to float.
 - `system` Refactored to replace all `glob()` calls using the `GLOB_BRACE` flag with `oc_glob()`.
 - `system` `scssphp/scssphp` package updated to version `2.1`.
-- `system` `twig/twig` package updated to version `3.27`.
+- `system` `twig/twig` package updated to version `3.28`.
 - `system` Bootstrap CSS and JS updated to version `5.3.8`.
 - `system` jQuery updated to version `4.0.0`.
 - `system` Monolithic `stylesheet.css` has been converted to a modular SCSS structure.
@@ -90,6 +90,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0).
 - `system` [#15409](https://github.com/opencart/opencart/pull/15409) - A set of improvements and fixes from @plemondev (partially used).
 - `system` [#15447](https://github.com/opencart/opencart/pull/15447) - Fix install open_basedir validation.
 - `system` [#15554](https://github.com/opencart/opencart/pull/15554) - Fix email validation logic.
+- `system` [#15605](https://github.com/opencart/opencart/pull/15605), [#15606](https://github.com/opencart/opencart/pull/15606) Match api routes case insensitively in the startup gate.
 - `system` Fix viewing embedded Youtube video.
 - `system` When unloading extensions, archives with errors were not deleted, but remained in the `/marketplace` folder.
 - `system` The password recovery link in the email was visible as plain text.
